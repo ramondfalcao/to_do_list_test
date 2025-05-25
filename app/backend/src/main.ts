@@ -13,6 +13,7 @@ async function bootstrap() {
     .setTitle('To do List API')
     .setDescription('Teste técnico')
     .setVersion('0.1')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
