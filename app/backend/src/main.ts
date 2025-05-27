@@ -9,6 +9,12 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
+  app.enableCors({
+    origin: '*', // Permite qualquer origem
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
   const config = new DocumentBuilder()
     .setTitle('To do List API')
     .setDescription('Teste técnico')
