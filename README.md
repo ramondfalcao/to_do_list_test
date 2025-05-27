@@ -54,6 +54,15 @@ A documentação da API está disponível após iniciar a aplicação:
 
 🔗 http://localhost:3001/docs
 
+## 📌 Principais Endpoints
+
+- **POST** `/auth/login` - Autenticação de usuário
+- **POST** `/users` - Criação de novo usuário  
+- **GET** `/tasks` - Lista todas as tarefas (com paginação)
+- **POST** `/tasks` - Cria nova tarefa
+- **PUT** `/tasks/:id` - Atualiza uma tarefa específica
+- **DELETE** `/tasks/:id` - Remove uma tarefa específica
+
 ## 🧪 Testes
 
 Obs: Os Testes Unitarios foram implementados apenas para o backend
