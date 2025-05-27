@@ -98,7 +98,7 @@ export default function Login() {
             <p>Não tem uma conta?{' '}
               <button
                 onClick={handleRegister}
-                className="text-indigo-600 hover:text-indigo-800 font-medium flex items-center justify-center gap-1 mx-auto"
+                className="text-indigo-600 hover:text-indigo-800 font-medium flex items-center justify-center gap-1 mx-auto cursor-pointer"
               >
                 <UserPlus size={16} /> Criar conta
               </button>
