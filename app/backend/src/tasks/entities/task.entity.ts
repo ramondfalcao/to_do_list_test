@@ -13,7 +13,13 @@ export class TaskEntity implements Tasks {
   id_user: number;
 
   @ApiProperty()
+  title: string;
+
+  @ApiProperty()
   description: string;
+
+  @ApiProperty()
+  checked: boolean;
 
   @ApiProperty()
   createdAt: Date;
