@@ -6,56 +6,29 @@ const api = axios.create({
   baseURL: HOST,
 });
 
-export const validateToken = async (token) => {
+export const validateToken = async () => {
   try {
-    if (!token) {
-      throw new Error('Token não disponível');
-    }
-
-    const config = {
-      headers: {
-        Authorization: token,
-      },
-    };
-
-    const response = await api.get('/validateToken', config);
+    const response = await api.get('/auth/validate-token');
     return response.data;
   } catch (error) {
-    console.error('Erro ao validar token:', error);
+    console.error('Erro ao validar token:', error.message);
     throw error;
   }
 };
 
-api.interceptors.request.use(
-  async (config) => {
-    const token = await getToken();
-    if (token) {
-      config.headers.Authorization = token;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+export const setToken = (token) => {
+  api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+};
 
 export const getToken = () => {
   try {
-    const token = localStorage.getItem('token');
-    const tokenParse = JSON.parse(token);
-
-    if (tokenParse) {
-      return tokenParse;
+    const tokenResponse = localStorage.getItem('token');
+    
+    if (tokenResponse) {
+      return tokenResponse;
     }
-    return null;
-  } catch (error) {
-    console.error('Erro ao obter token do localStorage:', error);
-    return null;
-  }
-};
 
-export const getUserData = async () => {
-  try {
-    const response = await api.get('/validateToken');
-    return response.data;
+    return null;
   } catch (error) {
     console.error('Erro ao obter token do localStorage:', error);
     return null;
