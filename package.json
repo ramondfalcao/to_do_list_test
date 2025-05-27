@@ -1,0 +1,22 @@
+{
+  "name": "to_do_list_test",
+  "version": "1.0.0",
+  "description": "Aplicação desenvolvida com Nest.js + Next.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compose:up": "(cd app && docker compose up -d --build)",
+    "compose:down": "(cd app && docker compose down --remove-orphans)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramondfalcao/to_do_list_test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ramondfalcao/to_do_list_test/issues"
+  },
+  "homepage": "https://github.com/ramondfalcao/to_do_list_test#readme"
+}
