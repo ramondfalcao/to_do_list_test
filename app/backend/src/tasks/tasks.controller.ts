@@ -9,10 +9,11 @@ import {
   UseGuards,
   Req,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { ApiBearerAuth, ApiOkResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiQuery } from '@nestjs/swagger';
 import { TaskEntity } from './entities/task.entity';
 import { Request } from 'express';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -41,12 +42,28 @@ export class TasksController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: TaskEntity, isArray: true })
-  findAll(@Req() req: Request) {
+  @ApiQuery({
+    name: 'page',
+    required: false,
+    type: Number,
+    description: 'Page number (starts from 1)',
+  })
+  @ApiQuery({
+    name: 'limit',
+    required: false,
+    type: Number,
+    description: 'Items per page',
+  })
+  findAll(
+    @Req() req: Request,
+    @Query('page') page = 1,
+    @Query('limit') limit = 10,
+  ) {
     if (!req.user) {
       throw new Error('Unauthenticated user');
     }
 
-    return this.tasksService.findAll(req.user.id);
+    return this.tasksService.findAll(req.user.id, page, limit);
   }
 
   @Get(':id')
