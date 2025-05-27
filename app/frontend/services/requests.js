@@ -46,7 +46,7 @@ export const requestPost = async (endpoint, body) => {
 };
 
 export const requestUpdate = async (endpoint, body) => {
-  const { data } = await api.put(endpoint, body);
+  const { data } = await api.patch(endpoint, body);
   return data;
 };
 
