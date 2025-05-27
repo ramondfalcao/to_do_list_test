@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, ParseIntPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  Req,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ApiBearerAuth, ApiOkResponse } from '@nestjs/swagger';
@@ -34,7 +45,7 @@ export class TasksController {
     if (!req.user) {
       throw new Error('Unauthenticated user');
     }
-    
+
     return this.tasksService.findAll(req.user.id);
   }
 
